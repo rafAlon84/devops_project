@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+
+<body>
+    <h1>Weather App</h1>
+    <form action="/onecall" method="get">
+        <label for="lat">Enter latitude:</label>
+        <input type="text" id="lat" name="lat" required>
+
+        <label for="lon">Enter longitude:</label>
+        <input type="text" id="lon" name="lon" required>
+
+        <button type="submit">Get Weather</button>
+    </form>
+
+    {% if weather %}
+    <h2>Weather in {{ weather.city }}</h2>
+    <p>Temperature: {{ weather.temperature }}°C</p>
+    <p>Humidity: {{ weather.humidity }}%</p>
+    <p>Weather: {{ weather.weather }}</p>
+    <p>Wind Speed: {{ weather.wind_speed }} m/s</p>
+    {% else %}
+    <p>No weather data available. Please enter latitude and longitude to get the weather forecast.</p>
+    {% endif %}
+</body>
+
+</html>
