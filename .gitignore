@@ -1,5 +1,4 @@
 app/.env
 app/.venv/
 app/__pycache__
-docker/compose.yaml
 README.docker.md

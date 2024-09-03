@@ -1,0 +1,40 @@
+services:
+
+  weather_node1:
+    build: 
+      context: .
+      dockerfile: docker/Dockerfile.app
+    networks: 
+      - weather_net
+
+  weather_node2:
+    build: 
+      context: .
+      dockerfile: docker/Dockerfile.app
+    networks:
+      - weather_net
+
+  weather_node3:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.app
+    networks:
+      - weather_net
+
+  nginx-lb:
+    build: 
+      context: .
+      dockerfile: docker/Dockerfile.nginx
+    ports:
+      - "8000:8000"
+    depends_on:
+      - weather_node1
+      - weather_node2
+      - weather_node3
+    networks:
+      - weather_net
+    
+
+networks:
+  weather_net:
+    driver: bridge

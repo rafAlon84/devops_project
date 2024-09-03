@@ -1,0 +1,5 @@
+FROM nginx:alpine3.20-slim AS base
+
+COPY load_balancer/nginx/nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
