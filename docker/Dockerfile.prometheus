@@ -1,0 +1,6 @@
+FROM prom/prometheus:v2.9.2
+
+COPY monitoring/Prometheus/prometheus.yml /etc/prometheus/prometheus.yml
+
+#CMD ["prometheus", "--config.file=/etc/prometheus/prometheus.yml"]
+ENTRYPOINT ["/bin/sh", "-c", "exec prometheus --config.file=/etc/prometheus/prometheus.yml"]

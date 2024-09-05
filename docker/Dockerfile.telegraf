@@ -1,0 +1,5 @@
+FROM telegraf:alpine
+
+COPY monitoring/Telegraf/telegraf.conf /etc/telegraf/telegraf.conf
+
+CMD ["telegraf"]

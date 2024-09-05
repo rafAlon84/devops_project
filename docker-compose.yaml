@@ -26,15 +26,43 @@ services:
       context: .
       dockerfile: docker/Dockerfile.nginx
     ports:
-      - "8000:8000"
+      - "80:80"
     depends_on:
       - weather_node1
       - weather_node2
       - weather_node3
     networks:
       - weather_net
-    
 
+  telegraf-nginx:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.telegraf
+    volumes:
+      - telegraf_volume:/etc/telegraf:ro
+    depends_on:
+      - nginx-lb
+    networks:
+      - weather_net
+  
+  prometheus-nginx:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - prometheus_volume:/etc/prometheus
+    depends_on:
+      - telegraf-nginx
+    networks:
+      - weather_net
+
+volumes:
+  telegraf_volume:
+    driver: local
+  prometheus_volume:
+    driver: local
 networks:
   weather_net:
     driver: bridge
