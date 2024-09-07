@@ -1,0 +1,5 @@
+FROM grafana/grafana-enterprise:main
+
+COPY monitoring/Grafana/grafana.ini /etc/grafana/grafana.ini
+
+CMD ["sudo","systemctl", "start", "grafana-server"] 

@@ -58,11 +58,27 @@ services:
     networks:
       - weather_net
 
+  grafana-metrics:
+    image: grafana/grafana-enterprise:main
+    container_name: grafana
+    restart: unless-stopped
+    volumes: 
+      - ./monitoring/Grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
+      - ./monitoring/Grafana/dashboards:/var/lib/grafana/dashboards
+      - ./monitoring/Grafana/dashboard.yml:/etc/grafana/provisioning/dashboards/dashboard.yml
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus-nginx
+    networks:
+      - weather_net
+
 volumes:
   telegraf_volume:
     driver: local
   prometheus_volume:
     driver: local
+
 networks:
   weather_net:
     driver: bridge
