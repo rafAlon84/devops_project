@@ -2,4 +2,8 @@ FROM grafana/grafana-enterprise:main
 
 COPY monitoring/Grafana/grafana.ini /etc/grafana/grafana.ini
 
-CMD ["sudo","systemctl", "start", "grafana-server"] 
+COPY monitoring/Grafana/datasource.yml /etc/grafana/provisioning/datasources/datasource.yml
+
+COPY monitoring/Grafana/dashboards /etc/grafana/provisioning/dashboards/dashboards
+
+COPY monitoring/Grafana/dashboard.yml /etc/grafana/provisioning/dashboards/dashboard.yml

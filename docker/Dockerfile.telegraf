@@ -1,4 +1,13 @@
-FROM telegraf:alpine
+FROM telegraf:latest
+
+RUN apt-get update && apt-get install -y \
+    sudo \
+    adduser \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN groupadd docker 
+
+RUN usermod -aG docker telegraf
 
 COPY monitoring/Telegraf/telegraf.conf /etc/telegraf/telegraf.conf
 

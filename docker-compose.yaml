@@ -38,7 +38,10 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.telegraf
+    user: root
+    entrypoint: "telegraf"
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       - telegraf_volume:/etc/telegraf:ro
     depends_on:
       - nginx-lb
@@ -59,13 +62,11 @@ services:
       - weather_net
 
   grafana-metrics:
-    image: grafana/grafana-enterprise:main
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.grafana
     container_name: grafana
     restart: unless-stopped
-    volumes: 
-      - ./monitoring/Grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
-      - ./monitoring/Grafana/dashboards:/var/lib/grafana/dashboards
-      - ./monitoring/Grafana/dashboard.yml:/etc/grafana/provisioning/dashboards/dashboard.yml
     ports:
       - "3000:3000"
     depends_on:

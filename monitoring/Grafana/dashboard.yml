@@ -8,4 +8,4 @@ providers:
     disableDeletion: false
     updateIntervalSeconds: 10
     options:
-      path: /var/lib/grafana/dashboards # Path de los dashboards en el container
+      path: /etc/grafana/provisioning/dashboards/dashboards # Path de los dashboards en el container

@@ -1,0 +1,959 @@
+{
+    "__inputs": [
+        {
+            "name": "DS_PROMETHEUS",
+            "label": "Prometheus",
+            "description": "",
+            "type": "datasource",
+            "pluginId": "prometheus",
+            "pluginName": "Prometheus"
+        }
+    ],
+    "__requires": [
+        {
+            "type": "panel",
+            "id": "gauge",
+            "name": "Gauge",
+            "version": ""
+        },
+        {
+            "type": "grafana",
+            "id": "grafana",
+            "name": "Grafana",
+            "version": "7.5.2"
+        },
+        {
+            "type": "panel",
+            "id": "graph",
+            "name": "Graph",
+            "version": ""
+        },
+        {
+            "type": "datasource",
+            "id": "prometheus",
+            "name": "Prometheus",
+            "version": "1.0.0"
+        },
+        {
+            "type": "panel",
+            "id": "stat",
+            "name": "Stat",
+            "version": ""
+        },
+        {
+            "type": "panel",
+            "id": "timeseries",
+            "name": "Time series",
+            "version": ""
+        }
+    ],
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": "-- Grafana --",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": null,
+    "iteration": 1627165205038,
+    "links": [],
+    "panels": [
+        {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "DS_PROMETHEUS",
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 0,
+                "y": 0
+            },
+            "hiddenSeries": false,
+            "id": 63,
+            "legend": {
+                "alignAsTable": true,
+                "avg": true,
+                "current": true,
+                "max": false,
+                "min": false,
+                "rightSide": true,
+                "show": true,
+                "total": false,
+                "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.5.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "exemplar": true,
+                    "expr": "docker_container_cpu_usage_percent{host=\"$host\", container_name=\"$container\"}",
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "{{ container_name }}",
+                    "refId": "A"
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "cpu_usage_percent",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "transparent": true,
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "$$hashKey": "object:38",
+                    "decimals": 1,
+                    "format": "percent",
+                    "label": null,
+                    "logBase": 1,
+                    "max": "100",
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "$$hashKey": "object:39",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "datasource": "DS_PROMETHEUS",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "decimals": 1,
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "percent"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 6,
+                "x": 12,
+                "y": 0
+            },
+            "id": 51,
+            "options": {
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": false,
+                "text": {}
+            },
+            "pluginVersion": "7.5.2",
+            "targets": [
+                {
+                    "exemplar": true,
+                    "expr": "docker_container_cpu_usage_percent{host=\"$host\", container_name=\"$container\"}",
+                    "interval": "",
+                    "legendFormat": "",
+                    "refId": "A"
+                }
+            ],
+            "timeFrom": null,
+            "title": "CONTAINER CPU %",
+            "transparent": true,
+            "type": "gauge"
+        },
+        {
+            "datasource": "DS_PROMETHEUS",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "decimals": 1,
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "percent"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 6,
+                "x": 18,
+                "y": 0
+            },
+            "id": 64,
+            "options": {
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": false,
+                "text": {}
+            },
+            "pluginVersion": "7.5.2",
+            "targets": [
+                {
+                    "exemplar": true,
+                    "expr": "((docker_container_mem_usage{host=\"$host\", container_name=\"$container\"}) * 100 ) / docker_container_mem_limit{host=\"$host\", container_name=\"$container\"}",
+                    "interval": "",
+                    "legendFormat": "",
+                    "refId": "A"
+                }
+            ],
+            "timeFrom": null,
+            "title": "CONTAINER  MEM %",
+            "transparent": true,
+            "type": "gauge"
+        },
+        {
+            "datasource": "DS_PROMETHEUS",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "fixedColor": "dark-blue",
+                        "mode": "fixed"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "none"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 4,
+                "x": 12,
+                "y": 5
+            },
+            "id": 57,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+            },
+            "pluginVersion": "7.5.2",
+            "targets": [
+                {
+                    "exemplar": true,
+                    "expr": "docker_n_cpus{host=\"$host\"}",
+                    "interval": "",
+                    "legendFormat": "",
+                    "refId": "A"
+                }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "HOST TOTAL CPU",
+            "type": "stat"
+        },
+        {
+            "datasource": "DS_PROMETHEUS",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "fixedColor": "dark-blue",
+                        "mode": "fixed"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "bytes"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 4,
+                "x": 16,
+                "y": 5
+            },
+            "id": 56,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+            },
+            "pluginVersion": "7.5.2",
+            "targets": [
+                {
+                    "exemplar": true,
+                    "expr": "docker_memory_total{host=\"$host\"}",
+                    "interval": "",
+                    "legendFormat": "",
+                    "refId": "A"
+                }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "HOST TOTAL MEM",
+            "type": "stat"
+        },
+        {
+            "datasource": "DS_PROMETHEUS",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "fixedColor": "dark-blue",
+                        "mode": "thresholds"
+                    },
+                    "decimals": 1,
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "dark-red",
+                                "value": null
+                            },
+                            {
+                                "color": "dark-green",
+                                "value": 300
+                            }
+                        ]
+                    },
+                    "unit": "ns"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 4,
+                "x": 20,
+                "y": 5
+            },
+            "hideTimeOverride": true,
+            "id": 65,
+            "options": {
+                "colorMode": "background",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+            },
+            "pluginVersion": "7.5.2",
+            "targets": [
+                {
+                    "exemplar": true,
+                    "expr": "time() - docker_container_status_uptime_ns{host=\"$host\", container_name= \"$container\", container_status=\"running\"} * -1",
+                    "interval": "",
+                    "legendFormat": "",
+                    "refId": "A"
+                }
+            ],
+            "timeFrom": "10s",
+            "timeShift": null,
+            "title": "CONTAINER UPTIME",
+            "transparent": true,
+            "type": "stat"
+        },
+        {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "DS_PROMETHEUS",
+            "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 7,
+                "w": 12,
+                "x": 0,
+                "y": 8
+            },
+            "hiddenSeries": false,
+            "id": 60,
+            "legend": {
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "show": true,
+                "total": false,
+                "values": false
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.5.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [
+                {
+                    "$$hashKey": "object:455",
+                    "alias": "mem_limit",
+                    "color": "#C4162A",
+                    "dashLength": 2,
+                    "dashes": true,
+                    "fill": 0,
+                    "lines": true
+                }
+            ],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "exemplar": true,
+                    "expr": "docker_container_mem_active_file{host=\"$host\", container_name=\"$container\"}",
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "active_file",
+                    "refId": "A"
+                },
+                {
+                    "exemplar": true,
+                    "expr": "docker_container_mem_active_anon{host=\"$host\", container_name=\"$container\"}",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "active_anon",
+                    "refId": "B"
+                },
+                {
+                    "exemplar": true,
+                    "expr": "docker_container_mem_cache{host=\"$host\", container_name=\"$container\"}",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "mem_cache",
+                    "refId": "C"
+                },
+                {
+                    "exemplar": true,
+                    "expr": "docker_container_mem_max_usage{host=\"$host\", container_name=\"$container\"}",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "max_usage",
+                    "refId": "D"
+                },
+                {
+                    "exemplar": true,
+                    "expr": "docker_container_mem_rss{host=\"$host\", container_name=\"$container\"}",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "mem_rss",
+                    "refId": "E"
+                },
+                {
+                    "exemplar": true,
+                    "expr": "docker_container_mem_usage{host=\"$host\", container_name=\"$container\"}",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "mem_usage",
+                    "refId": "F"
+                },
+                {
+                    "exemplar": true,
+                    "expr": "docker_container_mem_limit{host=\"$host\", container_name=\"$container\"}",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "mem_limit",
+                    "refId": "G"
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "mem_usage_percent",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "transparent": true,
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "$$hashKey": "object:38",
+                    "decimals": 1,
+                    "format": "bytes",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "$$hashKey": "object:39",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        },
+        {
+            "datasource": "DS_PROMETHEUS",
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 10,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "graph": false,
+                            "legend": false,
+                            "tooltip": false
+                        },
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": true
+                    },
+                    "decimals": 1,
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "bytes"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 4,
+                "w": 11,
+                "x": 12,
+                "y": 8
+            },
+            "id": 42,
+            "options": {
+                "graph": {},
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom"
+                },
+                "tooltipOptions": {
+                    "mode": "single"
+                }
+            },
+            "pluginVersion": "7.5.2",
+            "targets": [
+                {
+                    "exemplar": true,
+                    "expr": "rate(docker_container_net_rx_bytes{host=\"$host\", container_name=\"$container\"}[5m])",
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "rx_bytes",
+                    "refId": "A"
+                },
+                {
+                    "exemplar": true,
+                    "expr": "rate(docker_container_net_rx_dropped{host=\"$host\", container_name=\"$container\"}[5m])",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "rx_dropped",
+                    "refId": "B"
+                },
+                {
+                    "exemplar": true,
+                    "expr": "rate(docker_container_net_rx_errors{host=\"$host\", container_name=\"$container\"}[5m])",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "rx_errors",
+                    "refId": "C"
+                }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "net_rx_bytes",
+            "transparent": true,
+            "type": "timeseries"
+        },
+        {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "DS_PROMETHEUS",
+            "fieldConfig": {
+                "defaults": {
+                    "unit": "bytes"
+                },
+                "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+                "h": 3,
+                "w": 11,
+                "x": 12,
+                "y": 12
+            },
+            "hiddenSeries": false,
+            "id": 62,
+            "legend": {
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "show": true,
+                "total": false,
+                "values": false
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+                "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.5.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+                {
+                    "exemplar": true,
+                    "expr": "rate(docker_container_net_tx_bytes{host=\"$host\", container_name=\"$container\"}[5m]) * -1",
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "tx_bytes",
+                    "refId": "A"
+                },
+                {
+                    "exemplar": true,
+                    "expr": "rate(docker_container_net_tx_dropped{host=\"$host\", container_name=\"$container\"}[5m]) * -1",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "tx_dropped",
+                    "refId": "B"
+                },
+                {
+                    "exemplar": true,
+                    "expr": "rate(docker_container_net_tx_errors{host=\"$host\", container_name=\"$container\"}[5m]) * -1",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "tx_errors",
+                    "refId": "C"
+                }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "net_tx_bytes",
+            "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+            },
+            "transparent": true,
+            "type": "graph",
+            "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+            },
+            "yaxes": [
+                {
+                    "$$hashKey": "object:1011",
+                    "format": "bytes",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                },
+                {
+                    "$$hashKey": "object:1012",
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                }
+            ],
+            "yaxis": {
+                "align": false,
+                "alignLevel": null
+            }
+        }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+        "list": [
+            {
+                "current": {
+                    "selected": true,
+                    "text": "Prometheus",
+                    "value": "Prometheus"
+                },
+                "description": null,
+                "error": null,
+                "hide": 0,
+                "includeAll": false,
+                "label": "DATASOURCE",
+                "multi": false,
+                "name": "datasource",
+                "options": [],
+                "query": "prometheus",
+                "queryValue": "",
+                "refresh": 1,
+                "regex": "",
+                "skipUrlSync": false,
+                "type": "datasource"
+            },
+            {
+                "allValue": null,
+                "current": {},
+                "datasource": "DS_PROMETHEUS",
+                "definition": "label_values(docker_container_status_uptime_ns, host)",
+                "description": null,
+                "error": null,
+                "hide": 0,
+                "includeAll": false,
+                "label": "HOST",
+                "multi": false,
+                "name": "host",
+                "options": [],
+                "query": {
+                    "query": "label_values(docker_container_status_uptime_ns, host)",
+                    "refId": "StandardVariableQuery"
+                },
+                "refresh": 1,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "tagValuesQuery": "",
+                "tags": [],
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            },
+            {
+                "allValue": null,
+                "current": {},
+                "datasource": "DS_PROMETHEUS",
+                "definition": "label_values(docker_container_status_uptime_ns{host=\"$host\"}, container_name)",
+                "description": null,
+                "error": null,
+                "hide": 0,
+                "includeAll": false,
+                "label": "CONTAINER",
+                "multi": false,
+                "name": "container",
+                "options": [],
+                "query": {
+                    "query": "label_values(docker_container_status_uptime_ns{host=\"$host\"}, container_name)",
+                    "refId": "StandardVariableQuery"
+                },
+                "refresh": 1,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "tagValuesQuery": "",
+                "tags": [],
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            }
+        ]
+    },
+    "time": {
+        "from": "now-15m",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "TELEGRAF CONTAINER STATS",
+    "uid": "pNj9O4Z7z",
+    "version": 14
+}
