@@ -30,7 +30,7 @@ source "amazon-ebs" "docker" {
 
 
 build {
-    name ="Docker-Image"
+    name ="Docker-Cluster"
     sources = [
         "source.amazon-ebs.docker"
     ]
