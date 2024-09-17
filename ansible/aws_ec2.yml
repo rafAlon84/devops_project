@@ -1,0 +1,14 @@
+---
+plugin: amazon.aws.aws_ec2
+
+regions:
+  - eu-west-1 # Change for your specific region
+filters:
+  instance-state-name: running # Filter the state of your instances
+keyed_groups:
+  - key: tags.Name # Group by tag
+    prefix: docker_cluster_
+hostnames:
+  - tag:Name # Use the tag key in the filter name and the tag value as the filter value
+compose:
+  ansible_host: public_ip_address

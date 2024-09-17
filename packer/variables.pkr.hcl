@@ -7,14 +7,9 @@ variable "instance-type" {
     type = string
     default ="t2.micro"
 }
-variable "ami_manager" {
+variable "ami_docker" {
     type = string
-    default = "Docker-manager"
-}
-
-variable "ami_worker" {
-    type = string
-    default = "Docker_worker"
+    default = "Docker-image"
 }
 
 variable "username" {
