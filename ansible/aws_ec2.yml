@@ -7,7 +7,7 @@ filters:
   instance-state-name: running # Filter the state of your instances
 keyed_groups:
   - key: tags.Name # Group by tag
-    prefix: docker_cluster_
+    prefix: Docker-Image
 hostnames:
   - tag:Name # Use the tag key in the filter name and the tag value as the filter value
 compose:
