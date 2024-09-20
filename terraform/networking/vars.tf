@@ -13,4 +13,3 @@ variable "privatesub" {
 variable "publicsub" {
   type = list(string)
 }
-
