@@ -14,7 +14,7 @@ packer {
 
 source "amazon-ebs" "docker" {
     ami_name      = "${var.ami_docker}-${local.timestamp}"
-    instance_type = var.instance-type
+    instance_type = var.instance_type
     region        = var.aws_region
     source_ami_filter {
         filters = {

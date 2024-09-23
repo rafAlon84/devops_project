@@ -3,7 +3,7 @@ variable "aws_region" {
     default = "eu-west-1"
 }
 
-variable "instance-type" {
+variable "instance_type" {
     type = string
     default ="t2.micro"
 }
