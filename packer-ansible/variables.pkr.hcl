@@ -1,6 +1,6 @@
 variable "aws_region" {
     type = string
-    default = "eu-west-1"
+    default = "eu-west-3"
 }
 
 variable "instance_type" {
@@ -12,10 +12,10 @@ variable "ami_docker" {
     default = "Docker-image"
 }
 
-variable "username" {
-    type = string
-    default = "ubuntu"
-}
+// variable "username" {
+//     type = string
+//     default = "ubuntu"
+// }
 
 locals {
         timestamp = regex_replace(timestamp(), "[- TZ:]", "")

@@ -1,7 +1,7 @@
 packer {
     required_plugins {
         ansible = {
-            version = ">=1.0.0"
+            version = "~> 1"
             source = "github.com/hashicorp/ansible"
         }
         
@@ -25,7 +25,7 @@ source "amazon-ebs" "docker" {
         most_recent = true
         owners      = ["099720109477"]
     }
-    ssh_username = var.username
+    ssh_username = "ubuntu"
 }
 
 
@@ -35,10 +35,21 @@ build {
         "source.amazon-ebs.docker"
     ]
 
-    provisioner "ansible" {
-        playbook_file = "../ansible/playbook.yml"
-        ansible_env_vars = [
-            "ANSIBLE_CONFIG=../ansible/ansible.cfg"
+    provisioner "shell" {
+        inline = [
+            "sudo apt-get update",
+            "sudo apt-get install python3-pip -y",
+            "sudo -H pip3 install ansible"
         ]
+    }
+
+    provisioner "ansible-local" {
+        playbook_file = "./playbook.yml"
+        // user = "ubuntu"
+        // "For debug mode uncomment extra_arguments"
+        // extra_arguments   = [ 
+        //     "-vvvv",
+        // ]  
+        // ansible_env_vars = [ "ANSIBLE_SSH_ARGS='-o ControlPersist=600s'" ]
     }
 }
