@@ -13,3 +13,8 @@ variable "privatesub" {
 variable "publicsub" {
   type = list(string)
 }
+
+variable "target_id_attach" {
+  description = "ID from ec2 objetive attach"
+  type        = string
+}

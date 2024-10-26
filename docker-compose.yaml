@@ -1,24 +1,14 @@
 services:
 
-  weather_node1:
+  weather_app:
     build: 
       context: .
       dockerfile: docker/Dockerfile.app
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
     networks: 
-      - weather_net
-
-  weather_node2:
-    build: 
-      context: .
-      dockerfile: docker/Dockerfile.app
-    networks:
-      - weather_net
-
-  weather_node3:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.app
-    networks:
       - weather_net
 
   nginx-lb:
@@ -28,9 +18,7 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - weather_node1
-      - weather_node2
-      - weather_node3
+      - weather_app
     networks:
       - weather_net
 
@@ -82,4 +70,4 @@ volumes:
 
 networks:
   weather_net:
-    driver: bridge
+    driver: overlay

@@ -193,8 +193,8 @@ resource "aws_lb_listener" "http" {
 
 # Attach instances to Target Group
 
-resource "aws_lg_target_group_attachment" "nginx_attach" {
+resource "aws_lb_target_group_attachment" "nginx_attach" {
   target_group_arn = aws_lb_target_group.nginx_tg.arn
-  target_id        = aws_instance.nginx.id
+  target_id        = var.target_id_attach
   port             = 80
 }
