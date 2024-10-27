@@ -1,9 +1,7 @@
 services:
 
   weather_app:
-    build: 
-      context: .
-      dockerfile: docker/Dockerfile.app
+    image: weather_app_image
     deploy:
       replicas: 3
       restart_policy:
@@ -12,9 +10,7 @@ services:
       - weather_net
 
   nginx-lb:
-    build: 
-      context: .
-      dockerfile: docker/Dockerfile.nginx
+    image: nginx_lb_image
     ports:
       - "80:80"
     depends_on:
@@ -23,9 +19,7 @@ services:
       - weather_net
 
   telegraf-nginx:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.telegraf
+    image: telegraf_nginx_image
     user: root
     entrypoint: "telegraf"
     volumes:
@@ -37,9 +31,7 @@ services:
       - weather_net
   
   prometheus-nginx:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.prometheus
+    image: prometheus_nginx_image
     ports:
       - "9090:9090"
     volumes:
@@ -50,11 +42,9 @@ services:
       - weather_net
 
   grafana-metrics:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.grafana
-    container_name: grafana
-    restart: unless-stopped
+    image: grafana_metrics_image
+    deploy:
+      restart_policy: on-failure
     ports:
       - "3000:3000"
     depends_on:

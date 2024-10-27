@@ -6,4 +6,4 @@ README.docker.md
 .infracost
 terraform/.terraform
 terraform/terraform.tfvars
-.terraform.lock.hcl
+terraform/.terraform*
