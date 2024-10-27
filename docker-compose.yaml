@@ -44,7 +44,8 @@ services:
   grafana-metrics:
     image: grafana_metrics_image
     deploy:
-      restart_policy: on-failure
+      restart_policy: 
+        condition: on-failure
     ports:
       - "3000:3000"
     depends_on:
