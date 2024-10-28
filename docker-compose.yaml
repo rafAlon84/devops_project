@@ -1,7 +1,7 @@
 services:
 
   weather_app:
-    image: localhost:5000/weather_app_image:latest
+    image: rafalon84/weather_app_image:latest
     deploy:
       replicas: 3
       restart_policy:
@@ -10,7 +10,7 @@ services:
       - weather_net
 
   nginx-lb:
-    image: localhost:5000/nginx_lb_image:latest
+    image: rafalon84/nginx_lb_image:latest
     ports:
       - "80:80"
     depends_on:
