@@ -19,7 +19,7 @@ services:
       - weather_net
 
   telegraf-nginx:
-    image: telegraf_nginx_image
+    image: rafalon84/telegraf_nginx_image:latest
     user: root
     entrypoint: "telegraf"
     volumes:
@@ -31,7 +31,7 @@ services:
       - weather_net
   
   prometheus-nginx:
-    image: prometheus_nginx_image
+    image: rafalon84/prometheus_nginx_image:latest
     ports:
       - "9090:9090"
     volumes:
@@ -42,7 +42,7 @@ services:
       - weather_net
 
   grafana-metrics:
-    image: grafana_metrics_image
+    image: rafalon84/grafana_metrics_image:latest
     deploy:
       restart_policy: 
         condition: on-failure
