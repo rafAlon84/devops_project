@@ -1,7 +1,7 @@
 services:
 
   weather_app:
-    image: rafalon84/weather_app_image:latest
+    image: rafalon84/weather_app_image:v.1.0
     deploy:
       replicas: 3
       restart_policy:
@@ -10,7 +10,7 @@ services:
       - weather_net
 
   nginx-lb:
-    image: rafalon84/nginx_lb_image:latest
+    image: rafalon84/nginx_lb_image:v.1.0
     ports:
       - "80:80"
     depends_on:
@@ -19,7 +19,7 @@ services:
       - weather_net
 
   telegraf-nginx:
-    image: rafalon84/telegraf_nginx_image:latest
+    image: rafalon84/telegraf_nginx_image:v.1.0
     user: root
     entrypoint: "telegraf"
     volumes:
@@ -31,7 +31,7 @@ services:
       - weather_net
   
   prometheus-nginx:
-    image: rafalon84/prometheus_nginx_image:latest
+    image: rafalon84/prometheus_nginx_image:v.1.0
     ports:
       - "9090:9090"
     volumes:
@@ -42,7 +42,7 @@ services:
       - weather_net
 
   grafana-metrics:
-    image: rafalon84/grafana_metrics_image:latest
+    image: rafalon84/grafana_metrics_image:v.1.0
     deploy:
       restart_policy: 
         condition: on-failure
